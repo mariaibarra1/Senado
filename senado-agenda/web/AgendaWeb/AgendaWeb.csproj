@@ -1,0 +1,539 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+        <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+        <IsPackable>false</IsPackable>
+        <SpaRoot>ClientApp\</SpaRoot>
+        <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+        <!-- Set this to true if you enable server-side prerendering -->
+        <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <WarningLevel>3</WarningLevel>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Don't publish the SPA source files, but do show them in the project files list -->
+        <Compile Remove="ClientApp\src\app\pages\catalogos\usuarios\**" />
+        <Content Remove="$(SpaRoot)**" />
+        <Content Remove="ClientApp\src\app\pages\catalogos\usuarios\**" />
+        <EmbeddedResource Remove="ClientApp\src\app\pages\catalogos\usuarios\**" />
+        <Content Include="ClientApp\angular.json" />
+        <Content Include="ClientApp\browserslist" />
+        <Content Include="ClientApp\e2e\protractor.conf.js" />
+        <Content Include="ClientApp\e2e\tsconfig.e2e.json" />
+        <Content Include="ClientApp\e2e\tsconfig.json" />
+        <Content Include="ClientApp\karma.conf.js" />
+        <Content Include="ClientApp\package.json" />
+        <Content Include="ClientApp\README.md" />
+        <Content Include="ClientApp\src\.DS_Store" />
+        <Content Include="ClientApp\src\@fuse\components\confirm-dialog\confirm-dialog.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\confirm-dialog\confirm-dialog.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\countdown\countdown.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\countdown\countdown.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\countdown\countdown.theme.scss" />
+        <Content Include="ClientApp\src\@fuse\components\demo\demo-content\demo-content.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\demo\demo-content\demo-content.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\demo\demo-sidebar\demo-sidebar.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\demo\demo-sidebar\demo-sidebar.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\highlight\highlight.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\material-color-picker\material-color-picker.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\material-color-picker\material-color-picker.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\material-color-picker\material-color-picker.theme.scss" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\horizontal\collapsable\collapsable.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\horizontal\collapsable\collapsable.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\horizontal\item\item.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\horizontal\item\item.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\navigation.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\navigation.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\vertical\collapsable\collapsable.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\vertical\collapsable\collapsable.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\vertical\group\group.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\vertical\group\group.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\vertical\item\item.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\navigation\vertical\item\item.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\progress-bar\progress-bar.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\progress-bar\progress-bar.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\search-bar\search-bar.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\search-bar\search-bar.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\search-bar\search-bar.theme.scss" />
+        <Content Include="ClientApp\src\@fuse\components\shortcuts\shortcuts.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\shortcuts\shortcuts.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\shortcuts\shortcuts.theme.scss" />
+        <Content Include="ClientApp\src\@fuse\components\sidebar\sidebar.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\sidebar\sidebar.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\sidebar\sidebar.theme.scss" />
+        <Content Include="ClientApp\src\@fuse\components\theme-options\theme-options.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\theme-options\theme-options.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\theme-options\theme-options.theme.scss" />
+        <Content Include="ClientApp\src\@fuse\components\widget\widget.component.html" />
+        <Content Include="ClientApp\src\@fuse\components\widget\widget.component.scss" />
+        <Content Include="ClientApp\src\@fuse\components\widget\widget.theme.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\core.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\fuse.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\plugins\_ngx-color-picker.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\plugins\_ngx-datatable.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\plugins\_perfect-scrollbar.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\plugins\_plugins.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\plugins\_prism.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_angular-material-fix.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_breakpoints.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_cards.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_colors.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_docs.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_forms.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_general.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_helpers.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_icons.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_material.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_navigation.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_normalize.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_page-layouts.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_print.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_scrollbars.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\partials\_typography.scss" />
+        <Content Include="ClientApp\src\@fuse\scss\theme.scss" />
+        <Content Include="ClientApp\src\app\app.component.html" />
+        <Content Include="ClientApp\src\app\app.component.scss" />
+        <Content Include="ClientApp\src\app\app.theme.scss" />
+        <Content Include="ClientApp\src\app\layout\components\chat-panel\chat-panel.theme.scss" />
+        <Content Include="ClientApp\src\app\layout\components\content\content.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\content\content.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\footer\footer.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\footer\footer.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\horizontal\style-1\style-1.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\horizontal\style-1\style-1.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\navbar.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\navbar.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\vertical\style-1\style-1.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\vertical\style-1\style-1.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\vertical\style-2\style-2.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\navbar\vertical\style-2\style-2.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\quick-panel\quick-panel.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\quick-panel\quick-panel.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\toolbar\toolbar.component.html" />
+        <Content Include="ClientApp\src\app\layout\components\toolbar\toolbar.component.scss" />
+        <Content Include="ClientApp\src\app\layout\components\toolbar\toolbar.theme.scss" />
+        <Content Include="ClientApp\src\app\layout\horizontal\layout-1\layout-1.component.html" />
+        <Content Include="ClientApp\src\app\layout\horizontal\layout-1\layout-1.component.scss" />
+        <Content Include="ClientApp\src\app\layout\vertical\layout-1\layout-1.component.html" />
+        <Content Include="ClientApp\src\app\layout\vertical\layout-1\layout-1.component.scss" />
+        <Content Include="ClientApp\src\app\layout\vertical\layout-2\layout-2.component.html" />
+        <Content Include="ClientApp\src\app\layout\vertical\layout-2\layout-2.component.scss" />
+        <Content Include="ClientApp\src\app\layout\vertical\layout-3\layout-3.component.html" />
+        <Content Include="ClientApp\src\app\layout\vertical\layout-3\layout-3.component.scss" />
+        <Content Include="ClientApp\src\app\main\sample\sample.component.html" />
+        <Content Include="ClientApp\src\app\main\sample\sample.component.scss" />
+        <Content Include="ClientApp\src\app\pages\acceso\acceso.component.html" />
+        <Content Include="ClientApp\src\app\pages\acceso\acceso.component.scss" />
+        <Content Include="ClientApp\src\app\pages\acceso\acceso.theme.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\espacios\espacios-form\espacios-form.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\espacios\espacios-form\espacios-form.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\espacios\espacios.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\espacios\espacios.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\partido-politico\partido-politico-form\partido-politico-form.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\partido-politico\partido-politico-form\partido-politico-form.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\partido-politico\partido-politico.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\partido-politico\partido-politico.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-web\rol-web-form\rol-web-form.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-web\rol-web-form\rol-web-form.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-web\rol-web.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-web\rol-web.component.scss" />
+        <Content Include="ClientApp\src\app\pages\errores\404\error404.component.html" />
+        <Content Include="ClientApp\src\app\pages\errores\404\error404.component.scss" />
+        <Content Include="ClientApp\src\app\pages\eventos\calendario\calendario-form\calendario-form.component.html" />
+        <Content Include="ClientApp\src\app\pages\eventos\calendario\calendario-form\calendario-form.component.scss" />
+        <Content Include="ClientApp\src\app\pages\eventos\calendario\calendario.component.html" />
+        <Content Include="ClientApp\src\app\pages\eventos\calendario\calendario.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario-form\gpo-parlamentario-form.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario-form\gpo-parlamentario-form.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado-form\rol-senado-form.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado-form\rol-senado-form.component.scss" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.component.html" />
+        <Content Include="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.component.scss" />
+        <Content Include="ClientApp\src\app\pages\eventos\solicitudes\solicitud-form\solicitud-form.component.html" />
+        <Content Include="ClientApp\src\app\pages\eventos\solicitudes\solicitud-form\solicitud-form.component.scss" />
+        <Content Include="ClientApp\src\app\pages\eventos\solicitudes\solicitudes.component.html" />
+        <Content Include="ClientApp\src\app\pages\eventos\solicitudes\solicitudes.component.scss" />
+        <Content Include="ClientApp\src\assets\.gitkeep" />
+        <Content Include="ClientApp\src\assets\icons\flags\tr.png" />
+        <Content Include="ClientApp\src\assets\icons\flags\us.png" />
+        <Content Include="ClientApp\src\assets\icons\material-icons\outline\fonts\material-outline-icons.svg" />
+        <Content Include="ClientApp\src\assets\icons\material-icons\outline\fonts\material-outline-icons.ttf" />
+        <Content Include="ClientApp\src\assets\icons\material-icons\outline\fonts\material-outline-icons.woff" />
+        <Content Include="ClientApp\src\assets\icons\material-icons\outline\style.css" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\demo-files\demo.css" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\demo-files\demo.js" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\demo.html" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\fonts\meteocons.svg" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\fonts\meteocons.ttf" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\fonts\meteocons.woff" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\Read Me.txt" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\selection.json" />
+        <Content Include="ClientApp\src\assets\icons\meteocons\style.css" />
+        <Content Include="ClientApp\src\assets\images\avatars\Abbott.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\alice.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\andrew.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Arnold.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Barrera.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Blair.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Boyle.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\carl.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Christy.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Copeland.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\danielle.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Estes.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\garry.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Harper.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Helen.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Henderson.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\james.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\jane.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Josefina.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\joyce.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\katherine.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Katina.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Lily.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Mai.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Nancy.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Nora.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Odessa.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\profile.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Reyna.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Shauna.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Shepard.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Tillman.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Trevino.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Tyson.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\Velazquez.jpg" />
+        <Content Include="ClientApp\src\assets\images\avatars\vincent.jpg" />
+        <Content Include="ClientApp\src\assets\images\backgrounds\dark-material-bg.jpg" />
+        <Content Include="ClientApp\src\assets\images\calendar\autumn.jpg" />
+        <Content Include="ClientApp\src\assets\images\calendar\spring.jpg" />
+        <Content Include="ClientApp\src\assets\images\calendar\summer.jpg" />
+        <Content Include="ClientApp\src\assets\images\calendar\winter.jpg" />
+        <Content Include="ClientApp\src\assets\images\cards\card1.jpg" />
+        <Content Include="ClientApp\src\assets\images\cards\card2-large.jpg" />
+        <Content Include="ClientApp\src\assets\images\cards\card2-medium.jpg" />
+        <Content Include="ClientApp\src\assets\images\cards\card2-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\cards\card2.jpg" />
+        <Content Include="ClientApp\src\assets\images\cards\card3-square.jpg" />
+        <Content Include="ClientApp\src\assets\images\cards\card3.jpg" />
+        <Content Include="ClientApp\src\assets\images\demo-content\morain-lake.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\a-walk-amongst-friends.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\braies-lake.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\fall-glow.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\first-snow.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\lago-di-braies.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\lago-di-sorapis.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\morain-lake.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\never-stop-changing.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\product-image-placeholder.png" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\reaching.jpg" />
+        <Content Include="ClientApp\src\assets\images\ecommerce\yosemite.jpg" />
+        <Content Include="ClientApp\src\assets\images\file-manager\sample-file-preview.jpg" />
+        <Content Include="ClientApp\src\assets\images\flags\es.png" />
+        <Content Include="ClientApp\src\assets\images\flags\tr.png" />
+        <Content Include="ClientApp\src\assets\images\flags\us.png" />
+        <Content Include="ClientApp\src\assets\images\logos\fuse.svg" />
+        <Content Include="ClientApp\src\assets\images\logos\senado.png" />
+        <Content Include="ClientApp\src\assets\images\mail\attachment-1.jpg" />
+        <Content Include="ClientApp\src\assets\images\mail\attachment-2.jpg" />
+        <Content Include="ClientApp\src\assets\images\mail\attachment-3.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\a-walk-amongst-friends-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\braies-lake-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\fall-glow-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\first-snow-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\lago-di-braies-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\lago-di-sorapis-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\morain-lake-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\morain-lake.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\never-stop-changing-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\never-stop-changing.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\reaching-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\profile\yosemite-small.jpg" />
+        <Content Include="ClientApp\src\assets\images\scrumboard\calendar.jpg" />
+        <Content Include="ClientApp\src\assets\images\scrumboard\header-1.jpg" />
+        <Content Include="ClientApp\src\assets\images\scrumboard\header-2.jpg" />
+        <Content Include="ClientApp\src\assets\images\scrumboard\mail.jpg" />
+        <Content Include="ClientApp\src\favicon.ico" />
+        <Content Include="ClientApp\src\index.html" />
+        <Content Include="ClientApp\src\styles.scss" />
+        <Content Include="ClientApp\tsconfig.app.json" />
+        <Content Include="ClientApp\tsconfig.json" />
+        <Content Include="ClientApp\tsconfig.spec.json" />
+        <Content Include="ClientApp\tslint.json" />
+        <None Remove="$(SpaRoot)**" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\**" />
+        <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Remove="ClientApp\src\app\models\estatusquipamientomodel.ts" />
+        <None Remove="ClientApp\src\app\models\gpo-parlamentario.model.ts" />
+        <None Remove="ClientApp\src\app\models\modelComision.ts" />
+        <None Remove="ClientApp\src\app\models\modelEstatusEquipamiento.ts" />
+        <None Remove="ClientApp\src\app\models\modelLegislatura.ts" />
+        <None Remove="ClientApp\src\app\models\modelTipoEquipamento.ts" />
+        <None Remove="ClientApp\src\app\models\modelTipoMontaje.ts" />
+        <None Remove="ClientApp\src\app\models\relGrupoPartido.model.ts" />
+        <None Remove="ClientApp\src\app\models\rol-senado.model.ts" />
+        <None Remove="ClientApp\src\app\models\ubicacion.model.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario-form\gpo-parlamentario-form.component.html" />
+        <None Remove="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario-form\gpo-parlamentario-form.component.scss" />
+        <None Remove="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario-form\gpo-parlamentario-form.component.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.component.html" />
+        <None Remove="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.component.scss" />
+        <None Remove="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.component.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.module.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado-form\rol-senado-form.component.html" />
+        <None Remove="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado-form\rol-senado-form.component.scss" />
+        <None Remove="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado-form\rol-senado-form.component.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.component.html" />
+        <None Remove="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.component.scss" />
+        <None Remove="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.component.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.module.ts" />
+        <None Remove="ClientApp\src\app\models\modelServicios.ts" />
+        <None Remove="ClientApp\src\app\models\modelTipoEvento.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\servicios\servicios.module.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\tipo-eventos\tipo-eventos.module.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\usuarios-form\usuarios-form.component.html" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\usuarios-form\usuarios-form.component.scss" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\usuarios-form\usuarios-form.component.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\usuarios.component.html" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\usuarios.component.scss" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\usuarios.component.ts" />
+        <None Remove="ClientApp\src\app\pages\catalogos\usuarios\usuarios.module.ts" />
+        <None Remove="ClientApp\src\app\services\bandejas.service.ts" />
+        <None Remove="ClientApp\src\app\services\comisiones.service.ts" />
+        <None Remove="ClientApp\src\app\services\eventos.service.ts" />
+        <None Remove="ClientApp\src\app\services\reportes.service.ts" />
+        <None Remove="ClientApp\src\app\services\usuarios.service.ts" />
+        <None Include="ClientApp\.gitignore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="ClientApp\e2e\tsconfig.e2e.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <TypeScriptCompile Include="ClientApp\e2e\src\app.e2e-spec.ts" />
+      <TypeScriptCompile Include="ClientApp\e2e\src\app.po.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\animations\index.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\confirm-dialog\confirm-dialog.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\confirm-dialog\confirm-dialog.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\countdown\countdown.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\countdown\countdown.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\demo\demo-content\demo-content.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\demo\demo-sidebar\demo-sidebar.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\demo\demo.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\highlight\highlight.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\highlight\highlight.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\highlight\prism-languages.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\index.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\material-color-picker\material-color-picker.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\material-color-picker\material-color-picker.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\horizontal\collapsable\collapsable.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\horizontal\item\item.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\navigation.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\navigation.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\navigation.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\vertical\collapsable\collapsable.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\vertical\group\group.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\navigation\vertical\item\item.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\progress-bar\progress-bar.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\progress-bar\progress-bar.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\progress-bar\progress-bar.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\search-bar\search-bar.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\search-bar\search-bar.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\shortcuts\shortcuts.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\shortcuts\shortcuts.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\sidebar\sidebar.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\sidebar\sidebar.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\sidebar\sidebar.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\theme-options\theme-options.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\theme-options\theme-options.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\widget\widget-toggle.directive.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\widget\widget.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\components\widget\widget.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\directives\directives.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\directives\fuse-if-on-dom\fuse-if-on-dom.directive.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\directives\fuse-inner-scroll\fuse-inner-scroll.directive.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\directives\fuse-mat-sidenav\fuse-mat-sidenav.directive.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\directives\fuse-mat-sidenav\fuse-mat-sidenav.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\directives\fuse-perfect-scrollbar\fuse-perfect-scrollbar.directive.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\directives\fuse-perfect-scrollbar\fuse-perfect-scrollbar.interfaces.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\fuse.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\mat-colors\index.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\pipes\camelCaseToDash.pipe.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\pipes\filter.pipe.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\pipes\getById.pipe.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\pipes\htmlToPlaintext.pipe.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\pipes\keys.pipe.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\pipes\pipes.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\services\config.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\services\copier.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\services\match-media.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\services\splash-screen.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\services\translation-loader.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\shared.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\types\fuse-config.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\types\fuse-navigation.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\types\index.ts" />
+      <TypeScriptCompile Include="ClientApp\src\@fuse\utils\index.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\app.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\app.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\fuse-config\index.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\content\content.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\content\content.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\footer\footer.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\footer\footer.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\horizontal\style-1\style-1.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\horizontal\style-1\style-1.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\navbar.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\navbar.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\vertical\style-1\style-1.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\vertical\style-1\style-1.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\vertical\style-2\style-2.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\navbar\vertical\style-2\style-2.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\quick-panel\quick-panel.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\quick-panel\quick-panel.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\toolbar\toolbar.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\components\toolbar\toolbar.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\horizontal\layout-1\layout-1.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\horizontal\layout-1\layout-1.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\layout.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\vertical\layout-1\layout-1.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\vertical\layout-1\layout-1.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\vertical\layout-2\layout-2.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\vertical\layout-2\layout-2.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\vertical\layout-3\layout-3.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\layout\vertical\layout-3\layout-3.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\main\sample\i18n\en.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\main\sample\i18n\tr.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\main\sample\sample.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\main\sample\sample.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\calendario.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\modelComision.ts">
+        <SubType>Code</SubType>
+      </TypeScriptCompile>
+      <TypeScriptCompile Include="ClientApp\src\app\models\modelEstatusEquipamiento.ts">
+        <SubType>Code</SubType>
+      </TypeScriptCompile>
+      <TypeScriptCompile Include="ClientApp\src\app\models\estatusquipamientomodel.ts">
+        <SubType>Code</SubType>
+      </TypeScriptCompile>
+      <TypeScriptCompile Include="ClientApp\src\app\models\modelTipoMontaje.ts">
+        <SubType>Code</SubType>
+      </TypeScriptCompile>
+      <TypeScriptCompile Include="ClientApp\src\app\models\modelTipoEquipamento.ts">
+        <SubType>Code</SubType>
+      </TypeScriptCompile>
+      <TypeScriptCompile Include="ClientApp\src\app\models\modelLegislatura.ts">
+        <SubType>Code</SubType>
+      </TypeScriptCompile>
+      <TypeScriptCompile Include="ClientApp\src\app\models\modelServicios.ts">
+        <SubType>Code</SubType>
+      </TypeScriptCompile>
+      <TypeScriptCompile Include="ClientApp\src\app\models\modelTipoEvento.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\espacio.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\evento.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\partido-politico.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\relGrupoPartido.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\rol-web.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\gpo-parlamentario.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\rol-senado.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\ubicacion.model.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\navigation\i18n\en.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\navigation\i18n\tr.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\navigation\navigation.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\acceso\acceso.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\acceso\acceso.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\espacios\espacios-form\espacios-form.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\espacios\espacios.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\espacios\espacios.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\partido-politico\partido-politico-form\partido-politico-form.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\partido-politico\partido-politico.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\partido-politico\partido-politico.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\rol-web\rol-web-form\rol-web-form.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\rol-web\rol-web.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\rol-web\rol-web.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\errores\404\error404.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\errores\404\error404.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\eventos\calendario\calendar.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\eventos\calendario\calendario-form\calendario-form.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\eventos\calendario\calendario.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\eventos\calendario\calendario.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario-form\gpo-parlamentario-form.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\gpo-parlamentario\gpo-parlamentario.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado-form\rol-senado-form.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\rol-senado\rol-senado.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\servicios\servicios.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\catalogos\tipo-eventos\tipo-eventos.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\eventos\solicitudes\solicitud-form\solicitud-form.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\eventos\solicitudes\solicitudes.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\pages\eventos\solicitudes\solicitudes.module.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\auth-guard.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\auth.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\main.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\usuarios.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\reportes.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\eventos.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\comisiones.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\bandejas.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\catalogos.service.ts" />
+      <TypeScriptCompile Include="ClientApp\src\environments\environment.hmr.ts" />
+      <TypeScriptCompile Include="ClientApp\src\environments\environment.prod.ts" />
+      <TypeScriptCompile Include="ClientApp\src\environments\environment.ts" />
+      <TypeScriptCompile Include="ClientApp\src\hmr.ts" />
+      <TypeScriptCompile Include="ClientApp\src\main.ts" />
+      <TypeScriptCompile Include="ClientApp\src\oauth.ts" />
+      <TypeScriptCompile Include="ClientApp\src\polyfills.ts" />
+      <TypeScriptCompile Include="ClientApp\src\test.ts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ClientApp\src\app\pages\comisiones\" />
+    </ItemGroup>
+
+    <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+        <!-- Ensure Node.js is installed -->
+        <Exec Command="node --version" ContinueOnError="true">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+        </Exec>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    </Target>
+
+    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+        <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+        <!-- Include the newly-built files in the publish output -->
+        <ItemGroup>
+            <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+            <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>%(DistFiles.Identity)</RelativePath>
+                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            </ResolvedFileToPublish>
+        </ItemGroup>
+    </Target>
+
+</Project>

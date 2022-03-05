@@ -1,0 +1,93 @@
+
+  <div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">{{titulo}}</span>
+        <button mat-icon-button (click)="dialogo.close()" aria-label="Close dialog">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div *ngIf="progressBar">
+      <mat-progress-bar color="primary"
+                        mode="indeterminate">
+      </mat-progress-bar>
+    </div>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+
+      <form [formGroup]="gpoParlamentarioForm">
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Nombre</mat-label>
+            <input name="nombre" formControlName="nombre" matInput required>
+          </mat-form-field>
+        </div>
+
+        <label *ngIf="errorLegislaruta"><font color="red">Error al obtener los datos</font></label>
+        <div fxLayout="row" fxLayoutAlign="start start">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Seleccione una Legislatura</mat-label>
+            <mat-select name="id_legislatura" formControlName="id_legislatura" >
+              <mat-option [value]="legislatura.id" *ngFor="let legislatura of ListaLegislatura">{{ legislatura.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-label> Partido Politico:</mat-label>
+        <br />
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start" fxLayoutGap="25px" *ngIf="!Asignado">
+          <table>
+            <tr *ngFor="let partido of ListaPartidos; let i = index">
+              <td>
+                <mat-slide-toggle [color]="warn" [disabled]="menuDisabled" *ngIf="partido.activo === true"
+                                  (change)="selectunselectPartido(i)">
+                  {{partido.nombre}}
+                </mat-slide-toggle>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </form>
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+      <button mat-button
+              class="save-button"
+              (click)="dialogo.close()"
+              aria-label="Close dialog">
+        Cancelar
+      </button>
+
+      <button *ngIf="accion === 'edit'"
+              mat-button
+              class="mr-8"
+              (click)="dialogo.close(['delete',gpoParlamentarioForm])"
+              aria-label="Delete"
+              matTooltip="Delete">
+        Eliminar
+      </button>
+
+      <button *ngIf="accion !== 'editar'"
+              mat-button
+              class="save-button"
+              (click)="agregarNuevo(gpoParlamentarioForm)"
+              [disabled]="gpoParlamentarioForm.invalid"
+              aria-label="SAVE">
+        Agregar
+      </button>
+
+      <button *ngIf="accion === 'editar'"
+              mat-button
+              class="save-button"
+              (click)="modificar(gpoParlamentarioForm)"
+              [disabled]="gpoParlamentarioForm.invalid"
+              aria-label="SAVE">
+        Guardar
+      </button>
+
+    </div>
+  </div>

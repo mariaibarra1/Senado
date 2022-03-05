@@ -1,0 +1,67 @@
+<div id="forms" class="page-layout simple fullwidth" fxLayout="column">
+
+  <!-- HEADER -->
+  <div class="header accent p-24 h-100" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="h1">Tipo Montaje</div>
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <!-- CONTENT -->
+  <div class="content p-24 mx-40">
+    <div *ngIf="progressBar">
+      <mat-progress-bar color="primary"
+                        mode="indeterminate">
+      </mat-progress-bar>
+    </div>
+
+    <mat-card>
+      <button mat-fab class="add-event-button mat-accent senado-table-button" (click)="agregar()" aria-label="Agrega servicio" matTooltip="Agregar" matTooltipPosition="left">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+        <!-- Position Column -->
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="descripcion">
+          <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.descripcion}} </mat-cell>
+        </ng-container>
+
+        <!-- Opciones -->
+        <ng-container matColumnDef="opciones">
+          <mat-header-cell *matHeaderCellDef class="w-10-p"> Opciones </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-button matTooltip="Editar" matTooltipPosition="left" color="primary" (click)="modificar(element)">
+              <mat-icon class="secondary-text" color="primary">edit</mat-icon>
+            </button>
+            <div *ngIf="element.activo">
+              <button mat-button matTooltip="Eliminar" matTooltipPosition="right" color="warn" (click)="deshabilitar(element.id)">
+                <mat-icon class="secondary-text" color="warn">delete</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="!element.activo">
+              <button mat-button matTooltip="Activar" matTooltipPosition="right" color="accent" (click)="habilitar(element)">
+                <mat-icon class="secondary-text" color="accent">restore_from_trash</mat-icon>
+              </button>
+            </div>
+
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[10, 20, 40, 80, 100]" (page)="changePage()" showFirstLastButtons></mat-paginator>
+    </mat-card>
+
+  </div>
+  <!-- / CONTENT -->
+
+</div>

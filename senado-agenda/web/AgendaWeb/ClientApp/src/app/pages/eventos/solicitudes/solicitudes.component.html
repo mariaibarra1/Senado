@@ -1,0 +1,128 @@
+<div class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+  <!-- HEADER -->
+  <div class="header {{colorHeader}}  px-24 py-8 h-76" fxLayout="row" fxLayoutAlign="start center">
+
+    <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+            (click)="toggleSidebar('solicitudes-sidebar')">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div>
+      <h2>Solicitudes: {{tituloTabla}}</h2>
+    </div>
+
+  </div>
+  <!-- / HEADER -->
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="solicitudes-sidebar" position="left" lockedOpen="gt-md">
+
+      <!-- SIDEBAR CONTENT -->
+      <div class="content p-24" fusePerfectScrollbar>
+        <mat-action-list>
+          <h3 mat-subheader>Solicitudes de eventos</h3>
+          <mat-list-item (click)="clickNuevos()">
+            <mat-icon mat-list-icon>inbox</mat-icon>
+            <h4 mat-line>Nuevos</h4>
+            <mat-chip-list>
+              <mat-chip selected color="primary">{{nuevosContador}}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item (click)="clickAprobados(2)">
+            <mat-icon mat-list-icon>check_box</mat-icon>
+            <h4 mat-line>Aprobados</h4>
+            <mat-chip-list>
+              <mat-chip selected color="accent">{{aprobadosContador}}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item (click)="clickRechazados(3)">
+            <mat-icon mat-list-icon>archive</mat-icon>
+            <h4 mat-line>Rechazados</h4>
+            <mat-chip-list>
+              <mat-chip selected color="warn">{{rechazadosContador}}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-action-list>
+      </div>
+      <!-- / SIDEBAR CONTENT -->
+
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+
+    <!-- CENTER -->
+    <div class="center p-24" fusePerfectScrollbar>
+
+      <!-- CONTENT -->
+      <div class="content p-24">
+        <table mat-table [dataSource]="dataSource" class="w-100-p">
+
+          <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+          <!-- nombre de solicitud Column -->
+          <ng-container matColumnDef="solicitud">
+            <th mat-header-cell *matHeaderCellDef class="w-15-p">Nombre Soilicitud</th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+
+          <!-- tipo de evento Column -->
+          <ng-container matColumnDef="tipoEvento">
+            <th mat-header-cell *matHeaderCellDef class="w-20-p">Tipo de evento</th>
+            <td mat-cell *matCellDef="let element"> {{element.tipoEventoNombre}} </td>
+          </ng-container>
+
+          <!-- espacio Column -->
+          <ng-container matColumnDef="espacio">
+            <th mat-header-cell *matHeaderCellDef class="w-20-p">Nombre del espacio</th>
+            <td mat-cell *matCellDef="let element"> {{element.espacioNombre}} </td>
+          </ng-container>
+
+          <!-- solicitante Column -->
+          <ng-container matColumnDef="solicitante">
+            <th mat-header-cell *matHeaderCellDef class="w-20-p">Nombre solicitante</th>
+            <td mat-cell *matCellDef="let element"> {{element.solicitanteNombre}} {{element.solicitanteApat}} {{element.solicitanteAmat}} </td>
+          </ng-container>
+
+          <!-- grupo parlamentario Column -->
+          <ng-container matColumnDef="gpoParlamentario">
+            <th mat-header-cell *matHeaderCellDef class="w-20-p">Gpo parlamentario</th>
+            <td mat-cell *matCellDef="let element"> {{element.grupoParlamentarioNombre}} </td>
+          </ng-container>
+
+          <!-- Opciones -->
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef class="w-25-p"> Opciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-button matTooltip="Detalle" color="primary" (click)="mostrarDetalle(element)">
+                <mat-icon class="secondary-text" color="primary">info</mat-icon>
+              </button>
+              <button mat-button matTooltip="Aprobar" color="accent">
+                <mat-icon class="secondary-text" color="accent">check_box</mat-icon>
+              </button>
+              <button mat-button matTooltip="Rechazar" color="warn">
+                <mat-icon class="secondary-text" color="warn">archive</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [length]="dataSource.length" [pageSize]="10"
+                       [pageSizeOptions]="[10, 20, 40, 80, 100]"></mat-paginator>
+      </div>
+      <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+  </div>
+  <!-- / CONTENT -->
+
+</div>

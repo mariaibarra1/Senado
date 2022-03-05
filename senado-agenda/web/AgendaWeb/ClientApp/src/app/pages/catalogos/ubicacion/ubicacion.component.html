@@ -1,0 +1,96 @@
+<div id="forms" class="page-layout simple fullwidth" fxLayout="column">
+
+  <!-- HEADER -->
+  <div class="header accent p-24 h-100" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="h1">Ubicaciones</div>
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <!-- CONTENT -->
+  <div class="content p-24 mx-40">
+
+    <mat-form-field class="w-100-p" style="margin-bottom: -16px !important;">
+      <input matInput placeholder="Filtrar" (keyup)="filtrar($event.target.value)"/>
+      <mat-icon matSuffix class="secondary-text">search</mat-icon>
+    </mat-form-field>
+
+    <div *ngIf="EnvioPost">
+      <mat-progress-bar color="primary"
+                        mode="indeterminate"
+                        style="margin-top: -4px !important;">
+      </mat-progress-bar>
+    </div>
+    <mat-card>
+      <button mat-fab class="add-event-button mat-accent senado-table-button" (click)="agregarUbicacion()"
+              aria-label="Agrega ubicación" matTooltip="Agregar" matTooltipPosition="left">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z0" matSort>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="calle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Calle y número</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.calle}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="estado">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Estado</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nombreEstado}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="municipio">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Alcaldía o Municipio</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nombreMunicipio}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="localidad">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Colonia</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nombreLocalidad}} </mat-cell>
+        </ng-container>
+
+        <!-- Opciones -->
+        <ng-container matColumnDef="opciones">
+          <mat-header-cell *matHeaderCellDef class="w-10-p"> Opciones</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <!-- Editar -->
+            <button mat-button matTooltip="Editar" matTooltipPosition="left" color="primary"
+                    (click)="modificarUbicacion(element)">
+              <mat-icon class="secondary-text" color="primary">edit</mat-icon>
+            </button>
+            <!-- desactivar -->
+            <button mat-button matTooltip="Eliminar" matTooltipPosition="right" color="warn"
+                    *ngIf="element.activo === true" (click)="habilitardeshabilitar(element.id, 'desactivar')">
+              <mat-icon class="secondary-text" color="warn">delete</mat-icon>
+            </button>
+            <!-- Activar -->
+            <button mat-button matTooltip="Activar" matTooltipPosition="right" color="accent"
+                    *ngIf="element.activo === false" (click)="habilitardeshabilitar(element.id, 'activar')">
+              <mat-icon class="secondary-text" color="accent">restore_from_trash</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[10, 20, 40, 80, 100]" (page)="changePage()" showFirstLastButtons></mat-paginator>
+    </mat-card>
+
+  </div>
+  <!-- / CONTENT -->
+
+</div>
+
+
+

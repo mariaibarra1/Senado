@@ -1,0 +1,108 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">{{nombreComision}}</span>
+      <button mat-icon-button (click)="dialogo.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+    
+
+    <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+      <form class="w-100-p mb-8">
+        <div *ngIf="progressBar">
+          <mat-progress-bar color="primary"
+                            mode="indeterminate">
+          </mat-progress-bar>
+        </div>
+        <label *ngIf="errorUsuarioElegidoVacio"><font color="red">Debe elegir un usuario de la lista</font></label>
+        <label *ngIf="errorUsuarioElegido"><font color="red">El usuario que intenta ingresar no se encontró, eliga uno de la lista</font></label>
+        <mat-form-field appearance="standard" class="w-100-p mb-8">
+          <input type="text" placeholder="Buscar Usuario" aria-label="Buscar" matInput [formControl]="filtradoUsuariosControl" [matAutocomplete]="auto" required>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredUsuarios | async" [value]="option">
+              {{option.nombre}} {{option.apellido_paterno}} {{option.apellido_materno}}
+            </mat-option>
+          </mat-autocomplete>
+
+          <button mat-button matSuffix mat-icon-button aria-label="Agregar" matTooltip="Agregar" matTooltipPosition="left" (click)="AgregarIntegrantes()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+
+  </div>
+  <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+ 
+    <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+      <mat-table [dataSource]="dataSourceIntegrantes" matSort class="w-100-p mb-8">
+
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nombreUsuario}} {{element.aPaternoUsuario}} {{element.aMaternoUsuario}} </mat-cell>
+        </ng-container>
+
+        <!-- Siglas Column -->
+        <ng-container matColumnDef="correo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Correo</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.correo}} </mat-cell>
+        </ng-container>
+
+        <!-- Siglas Column -->
+        <ng-container matColumnDef="rol">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Rol en la comisión</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+
+            <button mat-button matTooltip="Presidente" matTooltipPosition="right" [ngStyle]="{'color': element.id_rol_senado==0? 'green' : 'primary'}"
+                    (click)="ElegirPresidente(element)">
+              <mat-icon class="secondary-text" [ngStyle]="{'color': element.id_rol_senado==0? 'green' : 'primary'}">person_outline</mat-icon>
+            </button>
+
+            <button mat-button matTooltip="Secretario" matTooltipPosition="right"
+                    (click)="ElegirSecretario(element)">
+              <mat-icon class="secondary-text" [ngStyle]="{'color': element.id_rol_senado==0? 'green' : 'primary'}">assignment</mat-icon>
+            </button>
+
+            <button mat-button matTooltip="Integrante" matTooltipPosition="right"
+                    (click)="ElegirIntegrante(element.id)">
+              <mat-icon class="secondary-text" [ngStyle]="{'color': element.id_rol_senado==0? 'green' : 'primary'}">people</mat-icon>
+            </button>
+
+          </mat-cell>
+        
+
+        </ng-container>
+
+        <!-- Opciones -->
+        <ng-container matColumnDef="opciones">
+          <mat-header-cell *matHeaderCellDef class="w-10-p" style="justify-content: center;"> Opciones</mat-header-cell>
+          <mat-cell *matCellDef="let element" style="justify-content: center;">
+            <button mat-button matTooltip="Eliminar de la comisión" matTooltipPosition="left" color="warn"
+                    (click)="modificarPP(element)">
+              <mat-icon class="secondary-text" color="warn">delete_forever</mat-icon>
+            </button>
+
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsIntegrantes"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsIntegrantes;"></mat-row>
+      </mat-table>
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+    <button mat-button class="save-button" (click)="dialogo.close()" aria-label="Close dialog">
+      Cancelar
+    </button>
+
+
+  </div>
+</div>

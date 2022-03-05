@@ -1,0 +1,267 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar class="mat-accent m-0">
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">{{dialogTitle}}</span>
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Cerrar">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-16 pb-0 m-0" fusePerfectScrollbar>
+
+    <form name="eventForm" [formGroup]="eventForm" class="event-form w-100-p" fxLayout="column" fxFlex>
+
+      <mat-form-field appearance="outline" class="w-100-p">
+        <mat-label>Nombre</mat-label>
+        <input matInput
+               name="title"
+               formControlName="nombre"
+               required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100-p">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput
+                  formControlName="descripcion"
+                  mat-maxlength="250"
+                  max-rows="4"
+                  required>
+                </textarea>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+          <mat-label>Tipo de evento</mat-label>
+          <mat-select formControlName="id_tipo_evento" id="id_tipo_evento" [(ngModel)]="id_tipo_evento" [value]="id_tipo_evento" required>
+            <mat-option *ngFor="let gpp of ListTE" value={{gpp.id}}>
+              {{gpp.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+          <mat-label>Solicitante</mat-label>
+          <input matInput required readonly> {{usuario.displayName}}
+          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+        </mat-form-field>
+
+      </div>
+
+      <div class="pb-32" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+
+        <mat-slide-toggle name="allDay" formControlName="allday" class="mr-24 pr-4" fxFlex="50"
+                          aria-label="Todo el día" required>
+          Todo el día
+        </mat-slide-toggle>
+
+        <mat-slide-toggle name="privado" formControlName="privado" class="mr-24 pl-4" fxFlex="50" aria-label="Privado" required>
+          Evento privado
+        </mat-slide-toggle>
+
+      </div>
+
+      <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+
+        <mat-form-field appearance="outline" class="pr-sm-8" fxFlex="50">
+          <mat-label>Empieza - Fecha</mat-label>
+          <input matInput [matDatepicker]="startDatePicker" name="start" formControlName="fecha_inicio" required>
+          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="pl-sm-8 no-errors-spacer" fxFlex="50">
+          <mat-label>Empieza - Hora</mat-label>
+          <input matInput type="time" formControlName="hora_inicio" required>
+        </mat-form-field>
+
+      </div>
+
+      <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+
+        <mat-form-field appearance="outline" class="pr-sm-8" fxFlex="50">
+          <mat-label>Termina - Fecha</mat-label>
+          <input matInput [matDatepicker]="endDatePicker" name="fecha_fin" formControlName="fecha_fin" required>
+          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="pl-sm-8 no-errors-spacer" fxFlex="50">
+          <mat-label>Termina - Hora</mat-label>
+          <input matInput type="time" formControlName="hora_fin" required>
+        </mat-form-field>
+
+      </div>
+
+      <mat-form-field appearance="outline" class="w-100-p">
+        <mat-label>Espacio</mat-label>
+        <mat-select formControlName="id_espacio" id="id_espacio" [(ngModel)]="id_espacio" [value]="id_espacio" required>
+          <mat-option *ngFor="let gpp of ListUb" value={{gpp.id}}>
+            {{gpp.nombre}} - {{gpp.nombre_ubicacion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100-p">
+        <mat-label>Comisión</mat-label>
+        <mat-select formControlName="id_comision" id="id_comision" [(ngModel)]="id_comision" [value]="id_comision" required>
+          <mat-option *ngFor="let gpp of ListC" value={{gpp.id}}>
+            {{gpp.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-accordion class="w-100-p mb-8">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Integrantes - {{dataSource.data.length}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <form>
+            <mat-form-field appearance="standard" class="w-100-p">
+              <input type="text" placeholder="Buscar" aria-label="Buscar" matInput [formControl]="myControl" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+              <button mat-button matSuffix mat-icon-button aria-label="Agregar" matTooltip="Agregar" matTooltipPosition="left" (click)="AgregarIntegrantes()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-form-field>
+          </form>
+
+          <div class="h-320" style="overflow: auto;">
+            <table mat-table [dataSource]="dataSource" class="w-100-p">
+
+              <!-- Nombre -->
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef class="w-40-p"> Nombre</th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} {{element.apellido_paterno}} {{element.apellido_materno}}  </td>
+              </ng-container>
+
+              <!-- Correo electrónico -->
+              <ng-container matColumnDef="correo">
+                <th mat-header-cell *matHeaderCellDef class="w-40-p"> Correo electrónico</th>
+                <td mat-cell *matCellDef="let element"> {{element.correo_electronico}} </td>
+              </ng-container>
+
+              <!-- Opciones -->
+              <ng-container matColumnDef="opciones">
+                <th mat-header-cell *matHeaderCellDef class="w-10-p"> Opciones</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-button matTooltip="Quitar" matTooltipPosition="left" color="warn" (click)=" EliminarIntegrantes(element)">
+                    <mat-icon class="secondary-text" color="warn">close</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+
+        </mat-expansion-panel>
+
+
+
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Invitados - {{dataSourceInvitados.data.length}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+
+
+          <form>
+            <mat-form-field appearance="standard" fxFlex="48">
+              <mat-label>Nombre</mat-label>
+              <input type="text" matInput [formControl]="NombreInvi" [matAutocomplete]="auto" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" fxFlex="48" class="px-8">
+              <mat-label>Correo electrónico</mat-label>
+              <input type="text" matInput [formControl]="CorreoInvi" [matAutocomplete]="auto" required>
+            </mat-form-field>
+
+            <button mat-button matSuffix mat-icon-button aria-label="Agregar" matTooltip="Agregar" matTooltipPosition="left" (click)="AgregarInvitados()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </form>
+
+          <div class="h-320" style="overflow: auto;">
+            <table mat-table [dataSource]="dataSourceInvitados" class="w-100-p">
+
+              <!-- Nombre -->
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef class="w-40-p"> Nombre</th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}}  </td>
+              </ng-container>
+
+              <!-- Correo electrónico -->
+              <ng-container matColumnDef="correo">
+                <th mat-header-cell *matHeaderCellDef class="w-40-p"> Correo electrónico</th>
+                <td mat-cell *matCellDef="let element"> {{element.correo_electronico}} </td>
+              </ng-container>
+
+              <!-- Opciones -->
+              <ng-container matColumnDef="opciones">
+                <th mat-header-cell *matHeaderCellDef class="w-10-p"> Opciones</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-button matTooltip="Quitar" matTooltipPosition="left" color="warn" (click)=" EliminarInvitados(element)">
+                    <mat-icon class="secondary-text" color="warn">close</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsInvitados; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsInvitados;"></tr>
+            </table>
+          </div>
+        </mat-expansion-panel>
+
+
+
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Servicios - {{listSer.length}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+            <mat-slide-toggle *ngFor="let toggle of ListS" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%" class="m-8" (change)="AgregarServicios(toggle,$event)">{{toggle.nombre}}</mat-slide-toggle>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </form>
+
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+    <button mat-button color="primary"
+            class="save-button"
+            aria-label="Aprobar">
+      Aprobar
+    </button>
+
+    <button mat-button color="primary"
+            class="save-button"
+            aria-label="Rechazar">
+      Rechazar
+    </button>
+
+  </div>
+</div>
+

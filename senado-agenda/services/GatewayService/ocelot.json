@@ -1,0 +1,133 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8076
+        }
+      ],
+      "UpstreamPathTemplate": "/catalogos/{path}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ReRouteIsCaseSensitive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2002
+        }
+      ],
+      "UpstreamPathTemplate": "/usuarios/{path}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ReRouteIsCaseSensitive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2003
+        }
+      ],
+      "UpstreamPathTemplate": "/comisiones/{path}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ReRouteIsCaseSensitive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2004
+        }
+      ],
+      "UpstreamPathTemplate": "/eventos/{path}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ReRouteIsCaseSensitive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5038
+        }
+      ],
+      "UpstreamPathTemplate": "/bandejas/{path}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ReRouteIsCaseSensitive": true
+    },
+    {
+      "DownstreamPathTemplate": "/pms01.onmicrosoft.com/oauth2/v2.0/token",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "login.microsoftonline.com",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/oauth2/v2.0/token",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ReRouteIsCaseSensitive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2004
+        }
+      ],
+      "UpstreamPathTemplate": "/logger/{path}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ReRouteIsCaseSensitive": true
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:2000"
+  }
+}

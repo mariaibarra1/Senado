@@ -1,0 +1,19 @@
+<div id="login" fxLayout="column">
+
+  <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+    <div id="login-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+      <div class="title">BIENVENIDO</div>
+
+      <button mat-raised-button color="accent" class="submit-button" aria-label="Iniciar sesión" (click)="signIn()">
+        INICIAR SESIÓN
+      </button>
+
+      <div class="mt-40 mb-16">Para iniciar sesión, proporcione los datos de su cuenta del Senado de la República (senado.gob.mx).</div>
+
+    </div>
+
+  </div>
+
+</div>
